@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 
 function App() {
   const [state, setState] = useState("");
-  const [msgs, setmsgs] = useState("");
+  const [msgs, setmsgs] = useState([]);
   const socket = io.connect("http://localhost:5000");
 
   const okaygo = (e) => {
@@ -27,7 +27,7 @@ function App() {
         }}
       />
       <button onClick={(e) => okaygo(e)}>okay</button>
-      <h1>You Said: {msgs}</h1>
+      {msgs && msgs.map(msg => <h3 key={msg._id}>{msg.msg}</h3>)}
     </div>
   );
 }
